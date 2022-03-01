@@ -17,7 +17,9 @@ const PaymentModal = ({ open, setOpen, handleOpen, handleClose, data }) => {
   const classes = useStyles()
   const router = useRouter()
   const [amount, setAmount] = useState(0)
-  const [metamaskAddress, setMetamaskAddress] = useState('')
+  const [metamaskAddress, setMetamaskAddress] = useState(
+    '0x3aFdD22a2645222DF56357B0e34f80F91d3008F9'
+  )
   const [paid, setPaid] = useState(false)
 
   const { web3, enableWeb3, isWeb3Enabled, isAuthenticated } = useMoralis()
@@ -65,7 +67,7 @@ const PaymentModal = ({ open, setOpen, handleOpen, handleClose, data }) => {
               <div className={classes.eth}>Eth</div>
             </div>
             <div className={classes.btnWrapper}>
-              {isAuthenticated ?
+              {isAuthenticated ? (
                 !isWeb3Enabled ? (
                   <Button
                     variant='contained'
@@ -86,16 +88,17 @@ const PaymentModal = ({ open, setOpen, handleOpen, handleClose, data }) => {
                   >
                     Contribute
                   </Button>
-                ) :
+                )
+              ) : (
                 <Button
                   variant='contained'
                   color='button'
                   className={classes.btn}
-                  onClick={() => router.push("/login")}
+                  onClick={() => router.push('/login')}
                 >
                   Sign In To Contribute
                 </Button>
-              }
+              )}
             </div>
           </Box>
         </Fade>
